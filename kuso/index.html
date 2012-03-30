@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>Kuso</title>
+</head>
+
+<body>
+	<style>
+		body {
+			background-color: #ccc;
+			margin: 2% auto;
+			max-width: 900px;
+		}
+		canvas {
+			border-radius: 25px;
+		}
+		audio {
+			display: none;
+		}
+		img.hidden {
+			display: none;
+		}
+	</style>
+	<a href='http://github.com/lilasc'>
+		<img alt="Fork me on GitHub" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" style="position: fixed; top: 0; right: 0; border: 0;">
+	</a>
+	<div>
+		<img class='hidden' id='body' src='src/body.png' />
+		<img class='hidden' id='bg' src='src/bg.jpg' />
+		<canvas id='canvas' width=900px height=700px></canvas>
+		<audio id='audioClip' controls='' autoplay='autoplay' loop='loop'>
+			<source type='audio/mpeg' src='src/feng.mp3'></source>
+			<source type='audio/ogg' src='src/feng.ogg'></source>
+			Your browser does not support the audio tag               
+		</audio>
+	</div>
+	
+	<script defer=''>
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		var body = document.getElementById('body');
+		var bg = document.getElementById('bg');
+		var width = 300;
+		
+		//magic values for position and offset
+		var pos = new Array(0, 150, 475, 600, 725, 950, 1180);
+		var offsetX = 0, offsetY = 30;
+
+		var center = new Array (
+			450 , 95,
+			450, 330,
+			400, 260,
+			505, 270,
+			390, 470,
+			480, 470
+		);
+		
+		var offset = new Array (
+			-150, -85,
+			-150, -160,
+			-260, -50,
+			-40, -50,
+			-200, -30,
+			-120, -30
+		);
+				
+		function clear() {
+			context.fillStyle = '#fff';
+			context.fillRect(0, 0, canvas.width, canvas.height);
+		}
+		
+		function preDraw() {
+			clear();
+			context.drawImage(bg, 0, 0, 900, 700, 0, 0, 900, 700);
+			for (var i = pos.length - 2; i >= 0; i--) {
+				context.save();
+				context.translate(center[i * 2], center[i * 2 + 1]);
+				context.rotate(Math.PI / 360 * 0);
+				context.drawImage(body, 0, pos[i], width, pos[i + 1] - pos[i], offset[i * 2], offset[i * 2 + 1] , width, pos[i + 1] - pos[i]);
+				context.restore();
+			}
+			setTimeout('onTimer()', 500);
+		}
+		
+		var defAngle = new Array(
+			25, -25,
+			-100, 100
+		);
+
+		var count = 0;
+		function onTimer() {
+			clear();
+			context.drawImage(bg, 0, 0, 900, 700, 0, 0, 900, 700);
+			for (var i = 5; i >= 0; i--) {
+				var rand;
+				var offsetHead = 0;
+				context.save();
+				
+				if (i == 5)
+					rand = defAngle[count % 2];
+				else if (i == 4)
+					rand = defAngle[++count % 2];
+				else if (i == 0) {
+					offsetHead = Math.floor(Math.random() * 20) - 10;
+					rand = Math.floor(Math.random() * 60) - 30;
+				}
+				else
+					rand = Math.floor(Math.random() * 160) - 80;
+					
+				context.translate(center[i * 2], center[i * 2 + 1] + offsetHead);
+					
+				if (i != 1)
+					context.rotate(Math.PI / 180 * rand);
+				context.drawImage(body, 0, pos[i], width, pos[i + 1] - pos[i], offset[i * 2], offset[i * 2 + 1] , width, pos[i + 1] - pos[i]);
+				context.restore();
+			}
+			setTimeout('onTimer()', 250);
+		}
+		
+		function init() {
+			clear();
+			setTimeout('preDraw()', 50);
+		}
+		
+		window.onload = init();
+	</script>
+</body>
+
+</html>
