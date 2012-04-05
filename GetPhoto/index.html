@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Get Photo</title>
+</head>
+
+<body>
+	<style>
+		body {
+			background-color: #d2b48c;
+		}
+	</style>
+	<input type="text" id="id" value="091250155" />
+	<input type="submit" value="Get Photo!" onClick="getPhoto()" />
+	<img src="" id="photo" />
+	
+	<script>
+		function getPhoto() {
+			var id = document.getElementById("id").value;
+			var src = "http://portal.nju.edu.cn/PortalAjax?mode=1&role=11&UID=" + id;
+			document.getElementById("photo").src = src;
+		}
+		
+		window.onload = getPhoto;
+	</script>
+</body>
+
+</html>
