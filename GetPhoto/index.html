@@ -10,8 +10,13 @@
 	<style>
 		body {
 			background-color: #d2b48c;
+			font-family: Verdana;
+		}
+		p#hao {
+			color: teal;
 		}
 	</style>
+	<p>Enter the xue id, get the photo:</p>
 	<input type="text" id="id" value="091250155" />
 	<input type="submit" value="Get Photo!" onClick="getPhoto()" />
 	<img src="" id="photo" />
@@ -21,10 +26,20 @@
 			var id = document.getElementById("id").value;
 			var src = "http://portal.nju.edu.cn/PortalAjax?mode=1&role=11&UID=" + id;
 			document.getElementById("photo").src = src;
+			document.getElementById("hao").hidden = (id == "091250155")? false : true;
 		}
 		
 		window.onload = getPhoto;
 	</script>
+	
+	<hr />
+	<p>the photo is from school info system:</p>
+	<p>"http://portal.nju.edu.cn/PortalAjax?mode=1&role=11&UID=" + "id", you get the photo, only one line code</p>
+	<p id="hao">Getting Mr Hao, first come first get!
+		<img src="http://a.xnimg.cn/imgpro/emotions/tie/18.gif" />
+		<img src="http://a.xnimg.cn/imgpro/emotions/tie/18.gif" />
+		<img src="http://a.xnimg.cn/imgpro/emotions/tie/18.gif" />
+	</p>
 </body>
 
 </html>
