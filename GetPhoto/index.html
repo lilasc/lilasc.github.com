@@ -25,8 +25,10 @@
 		function getPhoto() {
 			var id = document.getElementById("id").value;
 			var src = "http://portal.nju.edu.cn/PortalAjax?mode=1&role=11&UID=" + id;
-			document.getElementById("photo").src = src;
+			var photo = document.getElementById("photo");
+			photo.src = src;
 			document.getElementById("hao").hidden = (id == "091250155")? false : true;
+			photo.hidden = (id == "091250155")? true : false;
 		}
 		
 		window.onload = getPhoto;
@@ -35,7 +37,7 @@
 	<hr />
 	<p>the photo is from school info system:</p>
 	<p>"http://portal.nju.edu.cn/PortalAjax?mode=1&role=11&UID=" + "id", you get the photo, only one line code</p>
-	<p id="hao">Getting Mr Hao, first come first get!
+	<p id="hao">Getting Mr Hao, first come first get! Mr hao biao shi zhao ta zhi jie renren.
 		<img src="http://a.xnimg.cn/imgpro/emotions/tie/18.gif" />
 		<img src="http://a.xnimg.cn/imgpro/emotions/tie/18.gif" />
 		<img src="http://a.xnimg.cn/imgpro/emotions/tie/18.gif" />
