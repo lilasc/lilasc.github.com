@@ -1,0 +1,60 @@
+body {
+	margin: auto;
+	padding-top: 70px;
+	background: url(../img/body_bg.png);
+}
+
+.container {
+	width: 1000px;
+	font-size: 24px;
+}
+
+.blue-white-header {
+	background-color: #3296CD;
+	color: white;
+	border-radius: 10px;
+}
+
+
+.center-text {
+	text-align: center;
+}
+
+.right-text {
+	text-align: right;
+}
+
+.best-sales-list {
+	font-size: 13px;
+	line-height: 18px;
+	margin-top: 10px;
+}
+
+.well {
+    background-color: #F0F0F0;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.thumbnails > li {
+    margin-left: 20px;
+}
+
+.thumbnails {
+    margin-left: -20px;
+}
+
+.nav > li > a:hover {
+    background-color: #ddd;
+}
+
+.copyright {
+	clear: left;
+}
+
+.border-radius5 {
+	border-radius: 5px;
+}
+
+a {
+	cursor: pointer;
+}
